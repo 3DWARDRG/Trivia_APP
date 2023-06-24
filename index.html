@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia APP</title>
+    <script defer src="./js/index.js"></script>
+    <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="justify-content-center d-flex">Trivia App</h1>
+    </header>
+    <main>
+        <form action="" method="post" class="form-api">
+            <h2 class="form-signin-heading">Crea tu trivia</h2>
+
+            <br>
+    
+            <label for="trivia_category">Selecciona la categoria: </label>
+            <select name="trivia_category" class="form-control">
+                <option value="any">Cualquier categoria</option>
+                <option value="9">Conocimiento General</option><option value="10">Entrenenimiento: Libros</option><option value="11">Entretenimiento: Pelicula</option><option value="12">Entretenimiento: Musica</option><option value="13">Entretenimiento: Musicales &amp; Teatros</option><option value="14">Entretenimiento: Television</option><option value="15">Entretenimiento: Video Juegos</option><option value="16">Entretenimiento: Juegos de Mesa</option><option value="17">Ciencia &amp; Naturaleza</option><option value="18">Ciencia: Computadores</option><option value="19">Ciencia: Matematicas</option><option value="20">Mitologia</option><option value="21">Deportes</option><option value="22">Geografia</option><option value="23">Historia</option><option value="24">Politica</option><option value="25">Arte</option><option value="26">Celebridades</option><option value="27">Animales</option><option value="28">Vehiculos</option><option value="29">Entretenimiento: Comics</option><option value="30">Ciencia: Gadgets</option><option value="31">Entretenimiento: Anime Japones &amp; Manga</option><option value="32">Entretenimiento: Caricaturas &amp; Animaciones</option>		</select>
+    
+            <br>
+    
+            <label for="trivia_difficulty">Selecciona Dificultad: </label>
+            <select name="trivia_difficulty" class="form-control">
+                <option value="any">Cualquier Dificultad</option>
+                <option value="easy">Facil</option>
+                <option value="medium">Intermedio</option>
+                <option value="hard">Dificil</option>
+            </select>
+    
+            <br>
+    
+            <label for="trivia_type">Selecciona el tipo de respuesta: </label>
+            <select name="trivia_type" class="form-control">&gt;
+                <option value="any">Cualquier tipo de respuesta</option>
+                <option value="multiple">Respuesta Multiple</option>
+                <option value="boolean">Verdadero / Falso</option>
+            </select>
+    
+            <br>
+    
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Generate TU TRIVIA</button>
+        </form>
+    </main>
+</body>
+</html>
