@@ -6,8 +6,6 @@ console.log(callUrlApi)
 let answerPrueba;
 
 let elementDomPrueba= document.querySelectorAll("#prueba");
-
-console.log(elementDomPrueba)
   
   getData();
 
@@ -29,12 +27,37 @@ console.log(elementDomPrueba)
         else if(data.results[i].type==="multiple"){
           console.log("funciona")
 
-          let correctAnswer=data.results;
-          let incorrectAnswer;
+          let correct_answer=data.results[i].correct_answer;
+          console.log(correct_answer)
+          let incorrect_answers=data.results[i].incorrect_answers;
+          let answersQuestion= correct_answer + "," + incorrect_answers;
 
-          let respuestasPrueba=correctAnswer + incorrectAnswer;
-          
-          for(let i=0;i<){}
+          let arr = answersQuestion.split(",");
+          arr.sort(() => Math.random() - 0.7);
+
+          console.log(arr)
+
+          let fieldset=document.querySelectorAll("body main #boxTrivia form fieldset");
+          let p=fieldset[i];
+
+          for(let j=0;j<arr.length;j++){
+
+            let input = document.createElement("input");
+            input.setAttribute("type", "radio");
+            input.setAttribute("id", "my-input");
+            input.setAttribute("value", "Valor por defecto");
+
+            let label = document.createElement("label");
+            label.setAttribute("for", "my-input");
+            label.setAttribute("id","pruebaDeRespuesta")
+            label.textContent=arr[j];
+
+            p.appendChild(input);
+            p.appendChild(label);
+            
+            
+            
+          }
 
         }
       }
@@ -44,3 +67,4 @@ console.log(elementDomPrueba)
       console.error(error);
     }
   }
+
