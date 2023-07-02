@@ -1,19 +1,56 @@
+main{
+    font-family: "Ysabeau SC", sans-serif;
+}
+
+
+#boxTrivia{
+    box-sizing: border-box;
+    padding: 5rem;
+    padding-top: 1.5rem;
+}
+
+#image{
+    height: 15rem;
+    width: 15rem;
+}
+
+#text{
+    font-weight: 500;
+    font-size: 10rem;
+    margin: 0;
+}
 
 fieldset{
-    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 #prueba{
     display: block;
+    font-weight: 500;
+    font-size: 2rem;
 }
 
+.form-check-input{
+    margin-right: 1rem;
+}
 
-#my-input{
+#contenedorAnswers{
     display: flex;
     justify-content: left;
-    margin: 0;
+    align-items: center;
 }
 
+#pruebaDeRespuesta{
+    font-size: 1.5rem;
+}
+
+#button{
+    margin: 2rem;
+    width: 10rem;
+    color: black;
+}
 
 
 

@@ -9,6 +9,9 @@ let elementDomPrueba= document.querySelectorAll("#prueba");
   
   getData();
 
+  let contador=0;
+
+  let pruebaRespuestasC;
 
   async function getData() {
     try {
@@ -17,16 +20,11 @@ let elementDomPrueba= document.querySelectorAll("#prueba");
       console.log(data);
 
       for(let i=0;i<elementDomPrueba.length;i++){
-        elementDomPrueba[i].innerHTML=[i+1]+"."+ " " +data.results[i].question
+        elementDomPrueba[i].innerHTML=[i+1]+"."+ " " +data.results[i].question;
 
         if(data.results[i].type==="boolean"){
 
           console.log("funciona")
-        }
-
-        else if(data.results[i].type==="multiple"){
-          console.log("funciona")
-
           let correct_answer=data.results[i].correct_answer;
           console.log(correct_answer)
           let incorrect_answers=data.results[i].incorrect_answers;
@@ -37,24 +35,91 @@ let elementDomPrueba= document.querySelectorAll("#prueba");
 
           console.log(arr)
 
-          let fieldset=document.querySelectorAll("body main #boxTrivia form fieldset");
-          let p=fieldset[i];
+
+          let directionDiv=document.querySelectorAll("body main #boxTrivia form fieldset");
+          let recorrer=directionDiv[i];
+
+          let b=[i]
+
+          console.log(b)
 
           for(let j=0;j<arr.length;j++){
 
-            let input = document.createElement("input");
-            input.setAttribute("type", "radio");
-            input.setAttribute("id", "my-input");
-            input.setAttribute("value", "Valor por defecto");
+            // let a=contador+=parseInt([j])
+
+            let a=contador+=j + 1
+
+            let div = document.createElement("div");
+            div.setAttribute("id","contenedorAnswers")
 
             let label = document.createElement("label");
-            label.setAttribute("for", "my-input");
+            label.setAttribute("for", "myInput" + a);
             label.setAttribute("id","pruebaDeRespuesta")
-            label.textContent=arr[j];
+            label.innerHTML=arr[j];
 
-            p.appendChild(input);
-            p.appendChild(label);
-            
+            let input = document.createElement("input");
+            input.setAttribute("type", "radio");
+            input.setAttribute("id", "myInput" + a);
+            input.setAttribute("name", "example" + b);
+            input.setAttribute("value", arr[j]);
+            input.classList.add("form-check-input")
+
+            recorrer.appendChild(div);
+            div.appendChild(input);
+            div.appendChild(label);
+          
+        }
+      }
+
+        else if(data.results[i].type==="multiple"){
+          console.log("funciona")
+
+          let correct_answer=data.results[i].correct_answer;
+
+            pruebaRespuestasC+= "," +correct_answer;
+
+          console.log(correct_answer)
+          let incorrect_answers=data.results[i].incorrect_answers;
+          let answersQuestion= correct_answer + "," + incorrect_answers;
+
+          let arr = answersQuestion.split(",");
+          arr.sort(() => Math.random() - 0.7);
+
+          console.log(arr)
+
+
+          let directionDiv=document.querySelectorAll("body main #boxTrivia form fieldset");
+          let recorrer=directionDiv[i];
+
+          let b=[i]
+
+          console.log(b)
+
+          for(let j=0;j<arr.length;j++){
+
+            // let a=contador+=parseInt([j])
+
+            let a=contador+=j + 1
+
+            let div = document.createElement("div");
+            div.setAttribute("id","contenedorAnswers")
+
+            let label = document.createElement("label");
+            label.setAttribute("for", "myInput" + a);
+            label.setAttribute("id","pruebaDeRespuesta")
+            label.innerHTML=arr[j];
+
+            let input = document.createElement("input");
+            input.setAttribute("type", "radio");
+            input.setAttribute("id", "myInput" + a);
+            input.setAttribute("name", "example" + b);
+            input.setAttribute("value", arr[j]);
+            input.classList.add("form-check-input")
+            input.setAttribute("required","");
+
+            recorrer.appendChild(div);
+            div.appendChild(input);
+            div.appendChild(label);
             
             
           }
@@ -68,3 +133,41 @@ let elementDomPrueba= document.querySelectorAll("#prueba");
     }
   }
 
+  let respuestasCoincidientes=[];
+
+  const formulario= document.querySelector("#formulario");
+
+  formulario.addEventListener("submit",resultadoTrivia)
+
+function resultadoTrivia(a){
+      a.preventDefault()
+
+      let fieldset= document.querySelectorAll("fieldset"); 
+
+      console.log(pruebaRespuestasC)
+
+      for(let i=0;i<fieldset.length;i++){
+
+        let valoresInput=document.querySelectorAll(".form-check-input").value;
+
+        console.log(valoresInput)
+
+        // let recorreInput = valoresInput[i];
+        // let recorrerAnswers= pruebaRespuestasC[i];
+        // // let comparation= recorreInput === recorrerAnswers;
+
+        // console.log(recorreInput)
+        // console.log(recorrerAnswers)
+
+        // if(comparation===true){
+
+        //   respuestasCoincidientes.push(recorrerAnswers)
+        //   console.log(respuestasCoincidientes)
+        // }
+
+        // console.log(comparation)
+       
+      }
+
+
+}
