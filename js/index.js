@@ -1,61 +1,33 @@
-const UrlBase="https://opentdb.com/api.php?amount=10";
+let UrlBase="https://opentdb.com/api.php?amount=10";
 
+const form= document.querySelector(".form-api");
 
-console.log("hola")
+const selectedOptions= document.querySelectorAll(".form-control");
 
-
-const formulario= document.querySelector(".form-api");
-
-
-formulario.addEventListener("submit", obtenerValores)
-
-
-function obtenerValores (a){
+form.addEventListener("submit", (a)=>{
 
     a.preventDefault();
 
-    let newUrlConcatenada;
+    if(selectedOptions[0].value !== "any"){
 
-    let prueba= document.querySelectorAll(".form-control");
-
-    for(i=0;i<prueba.length;i++){
-        
-       let x= prueba[i].value;
-
-        console.log(x)
-
-        if(x>=9 && x<=32){
-        
-            let argConcatenado="&category=";
-
-            newUrlConcatenada= UrlBase+ argConcatenado + x;
-
-        }
-
-        else if(x==="easy" || x==="medium" || x==="hard"){
-
-            let argConcatenado="&difficulty=";
-
-            newUrlConcatenada+= argConcatenado + x;
-
-        }
-
-        else if(x==="multiple" || x==="boolean"){
-
-            let argConcatenado="&type=";
-
-            newUrlConcatenada+= argConcatenado + x;
-
-        }
+      UrlBase += `&category=${selectedOptions[0].value}`;    
 
     }
 
-    newUrlConcatenada= String(newUrlConcatenada);
+    if(selectedOptions[1].value !== "any"){
 
-    console.log(newUrlConcatenada)
+    UrlBase += `&difficulty=${selectedOptions[1].value}`;
 
-    sessionStorage.setItem('callUrlApi', newUrlConcatenada);
+    }
+
+    if(selectedOptions[2].value !== "any"){
+
+    UrlBase += `&type=${selectedOptions[2].value}`; 
+    
+    }
+
+    sessionStorage.setItem('callUrlApi', UrlBase);
 
     window.location.href="../TuTriviaPersonalizada.html";
 
-}
+})
