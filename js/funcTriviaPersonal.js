@@ -1,173 +1,56 @@
 
 const callUrlApi= sessionStorage.getItem("callUrlApi");
-
 console.log(callUrlApi)
-
-let answerPrueba;
-
-let elementDomPrueba= document.querySelectorAll("#prueba");
-  
-  getData();
-
-  let contador=0;
-
-  let pruebaRespuestasC;
-
-  async function getData() {
-    try {
-      const response = await fetch(callUrlApi);
-      const data = await response.json();
-      console.log(data);
-
-      for(let i=0;i<elementDomPrueba.length;i++){
-        elementDomPrueba[i].innerHTML=[i+1]+"."+ " " +data.results[i].question;
-
-        if(data.results[i].type==="boolean"){
-
-          console.log("funciona")
-          let correct_answer=data.results[i].correct_answer;
-          console.log(correct_answer)
-          let incorrect_answers=data.results[i].incorrect_answers;
-          let answersQuestion= correct_answer + "," + incorrect_answers;
-
-          let arr = answersQuestion.split(",");
-          arr.sort(() => Math.random() - 0.7);
-
-          console.log(arr)
+const formulario= document.querySelector('#formulario');
 
 
-          let directionDiv=document.querySelectorAll("body main #boxTrivia form fieldset");
-          let recorrer=directionDiv[i];
 
-          let b=[i]
+const functionsTriviaApp={};
 
-          console.log(b)
-
-          for(let j=0;j<arr.length;j++){
-
-            // let a=contador+=parseInt([j])
-
-            let a=contador+=j + 1
-
-            let div = document.createElement("div");
-            div.setAttribute("id","contenedorAnswers")
-
-            let label = document.createElement("label");
-            label.setAttribute("for", "myInput" + a);
-            label.setAttribute("id","pruebaDeRespuesta")
-            label.innerHTML=arr[j];
-
-            let input = document.createElement("input");
-            input.setAttribute("type", "radio");
-            input.setAttribute("id", "myInput" + a);
-            input.setAttribute("name", "example" + b);
-            input.setAttribute("value", arr[j]);
-            input.classList.add("form-check-input")
-
-            recorrer.appendChild(div);
-            div.appendChild(input);
-            div.appendChild(label);
-          
-        }
-      }
-
-        else if(data.results[i].type==="multiple"){
-          console.log("funciona")
-
-          let correct_answer=data.results[i].correct_answer;
-
-            pruebaRespuestasC+= "," +correct_answer;
-
-          console.log(correct_answer)
-          let incorrect_answers=data.results[i].incorrect_answers;
-          let answersQuestion= correct_answer + "," + incorrect_answers;
-
-          let arr = answersQuestion.split(",");
-          arr.sort(() => Math.random() - 0.7);
-
-          console.log(arr)
-
-
-          let directionDiv=document.querySelectorAll("body main #boxTrivia form fieldset");
-          let recorrer=directionDiv[i];
-
-          let b=[i]
-
-          console.log(b)
-
-          for(let j=0;j<arr.length;j++){
-
-            // let a=contador+=parseInt([j])
-
-            let a=contador+=j + 1
-
-            let div = document.createElement("div");
-            div.setAttribute("id","contenedorAnswers")
-
-            let label = document.createElement("label");
-            label.setAttribute("for", "myInput" + a);
-            label.setAttribute("id","pruebaDeRespuesta")
-            label.innerHTML=arr[j];
-
-            let input = document.createElement("input");
-            input.setAttribute("type", "radio");
-            input.setAttribute("id", "myInput" + a);
-            input.setAttribute("name", "example" + b);
-            input.setAttribute("value", arr[j]);
-            input.classList.add("form-check-input")
-            input.setAttribute("required","");
-
-            recorrer.appendChild(div);
-            div.appendChild(input);
-            div.appendChild(label);
-            
-            
-          }
-
-        }
-      }
-      // Código que se ejecutará después de que se cumpla la promesa
-
-    } catch (error) {
-      console.error(error);
-    }
+functionsTriviaApp.getTrivia= (url)=>{
+  return fetch(url)
+  .then((data)=>data.json())
+  .then(response=>response.results)
+  .then(responseApi=> responseApi.map(organizarData))
+  .then(resolve=>resolve)
   }
 
-  let respuestasCoincidientes=[];
-
-  const formulario= document.querySelector("#formulario");
-
-  formulario.addEventListener("submit",resultadoTrivia)
-
-function resultadoTrivia(a){
-      a.preventDefault()
-
-      let fieldset= document.querySelectorAll("fieldset"); 
-
-      console.log(pruebaRespuestasC)
-
-      for(let i=0;i<fieldset.length;i++){
-
-        let valoresInput=document.querySelectorAll(".form-check-input").value;
-
-        console.log(valoresInput)
-
-        // let recorreInput = valoresInput[i];
-        // let recorrerAnswers= pruebaRespuestasC[i];
-        // // let comparation= recorreInput === recorrerAnswers;
-
-        // console.log(recorreInput)
-        // console.log(recorrerAnswers)
-
-        // if(comparation===true){
-
-        //   respuestasCoincidientes.push(recorrerAnswers)
-        //   console.log(respuestasCoincidientes)
-        // }
-
-        // console.log(comparation)
-       
-      }
+  functionsTriviaApp.createBoxTrivia=(data,index)=>{
+    return `<fieldset class="border border-green border-5 rounded-3 shadow-lg p-3 mb-5 bg-body rounded">
+  <legend id="prueba">${index+1}.${data.question}</legend>
+        ${data.answers.map((answer) => `<div id="contenedorAnswers"><input type="radio" id="${answer}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input" required="">
+        <label for="${answer}" id="pruebaDeRespuesta">${answer}</label></div>`).join('')}
+            </fieldset>`
+  }
 
 
+const answers_correct=[];
+
+
+class Trivia {
+  question;
+  answers;
+  correct_answer;
 }
+
+function organizarData (data){
+  const trivia= new Trivia();
+  trivia.question=data.question
+  trivia.answers= data.incorrect_answers
+  trivia.correct_answer= data.correct_answer
+
+  trivia.answers.unshift(trivia.correct_answer)
+  trivia.answers.sort(() => Math.random() - 0.5);
+  answers_correct.push(trivia.correct_answer)
+  return trivia
+}
+
+function loadTriviaItems(url) {
+  functionsTriviaApp.getTrivia(url).then((items = []) => {
+      const newHtml = items.map((item, index) => functionsTriviaApp.createBoxTrivia(item, index)).join('')
+      const convertNodeElementDom = document.createRange().createContextualFragment(newHtml);
+      formulario.prepend(convertNodeElementDom);
+  })
+}
+
+loadTriviaItems(callUrlApi)
