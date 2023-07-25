@@ -28,6 +28,5 @@ form.addEventListener("submit", (a)=>{
 
     sessionStorage.setItem('callUrlApi', UrlBase);
 
-    window.location.href="./TuTriviaPersonalizada.html";
-
+    window.location.href="../TuTriviaPersonalizada.html";
 })
