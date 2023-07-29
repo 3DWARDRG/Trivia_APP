@@ -1,3 +1,11 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+#box-content{
+    background: linear-gradient(to bottom,#a8ff78, #78ffd6
+);
+}
+
 main{
     font-family: "Ysabeau SC", sans-serif;
 }
@@ -52,6 +60,10 @@ fieldset{
     color: black;
 }
 
+#image-trofeo{
+    height: 10rem;
+    width: 10rem;
+}
 
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss"
+

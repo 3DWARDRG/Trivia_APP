@@ -17,7 +17,7 @@ functionsTriviaApp.getTrivia= (url)=>{
   }
 
   functionsTriviaApp.createBoxTrivia=(data,index)=>{
-    return `<fieldset class="border border-green border-5 rounded-3 shadow-lg p-3 mb-5 bg-body rounded">
+    return `<fieldset class="border-0 rounded-4 shadow p-3 mb-5 bg-body rounded">
   <legend id="prueba">${index+1}.${data.question}</legend>
         ${data.answers.map((answer) => `<div id="contenedorAnswers"><input type="radio" id="${answer}${index}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input" required="">
         <label for="${answer}${index}" id="pruebaDeRespuesta">${answer}</label></div>`).join('')}
@@ -75,43 +75,46 @@ for (let i = 0; i < valoresInput.length; i++) {
 
 console.log(valoresSeleccionados)
 
-let puntuacion=0;
+const informationScore={
+  score:0
+};
 
 
 for(let i=0;i < answers_correct.length;i++){
 
   if(answers_correct[i] === valoresSeleccionados[i]){
 
-    puntuacion+=100
+    informationScore.score+=100
 
     console.log("hola")
   }
 }
 
-console.log(puntuacion)
+console.log(informationScore.score)
 
 
-let a;
 
-if(puntuacion<=300){
-  a = "tu puntuacion fue MALA."
+if(informationScore.score<=300){
+  informationScore.text = "tu puntuacion fue MALA."
+  informationScore.image = "../images/Bronze Medal.png"
 }
 
-else if(puntuacion>=300 && puntuacion<=500){
-  a = "tu puntuacion fue REGULAR"
+else if(informationScore.score>=300 && informationScore.score<=500){
+    informationScore.text = "tu puntuacion fue REGULAR"
+    informationScore.image = "../images/Silver Trophy.png"
 }
 
-else if(puntuacion>=600 && puntuacion<=800){
-  a = "tu puntuacion fue BUENA."
+else if(informationScore.score>=600 && informationScore.score<=800){
+    informationScore.text = "tu score fue BUENA."
+    informationScore.image = "../images/Gold Trophy.png"
 }
 
-else if(puntuacion>=900 && puntuacion<=1000){
-  a = "tu puntuacion fue EXCELENTE."
+else if(informationScore.score>=900 && informationScore.puntuacion<=1000){
+  informationScore.text = "tu score fue EXCELENTE."
+  informationScore.image = "../images/Diamond Trophy.png"
 }
 
-console.log(a)
-
-const idea1= createModal(puntuacion,a);
+const idea1= createModal(informationScore);
 
   const convertN= document.createRange().createContextualFragment(idea1);
       body.prepend(convertN);
@@ -121,27 +124,25 @@ const idea1= createModal(puntuacion,a);
 
       myModalPokemon.addEventListener('hidden.bs.modal', () => {
       myModalPokemon.remove();
+      window.location.href="../index.html";
     });
 }
 
 
 formulario.addEventListener('submit',functionsTriviaApp.loadScore)
 
-function createModal(data,data2){
+function createModal(data){
   return `<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">!Tu Puntuacion¡</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body d-flex flex-column align-items-center">
+        <h5 class="modal-title" id="staticBackdropLabel">!You Score¡</h5>
+        <img src="${data.image}" id="image-trofeo" alt="logo">
+        <p>${data.score}</p>
+        <p>${data.text}</p>
       </div>
-      <div class="modal-body">
-        <p>${data}</p>
-        <p>${data2}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Comprendido</button>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">!Intentarlo de Nuevo¡</button>
       </div>
     </div>
   </div>
