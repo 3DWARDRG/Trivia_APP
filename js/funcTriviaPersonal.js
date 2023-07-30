@@ -9,6 +9,7 @@ const body=document.querySelector('body');
 const functionsTriviaApp={};
 
 functionsTriviaApp.getTrivia= (url)=>{
+
   return fetch(url)
   .then((data)=>data.json())
   .then(response=>response.results)
@@ -48,10 +49,12 @@ function organizarData (data){
 }
 
 function loadTriviaItems(url) {
+  showSpinner();
   functionsTriviaApp.getTrivia(url).then((items = []) => {
       const newHtml = items.map((item, index) => functionsTriviaApp.createBoxTrivia(item, index)).join('')
       const convertNodeElementDom = document.createRange().createContextualFragment(newHtml);
       formulario.prepend(convertNodeElementDom);
+      hideSpinner()
   })
 }
 
@@ -148,4 +151,12 @@ function createModal(data){
     </div>
   </div>
 </div>`
+}
+
+function showSpinner() {
+  document.querySelector('#spinner').style.display = 'block';
+}
+
+function hideSpinner() {
+  document.querySelector('#spinner').style.display = 'none';
 }
