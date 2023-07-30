@@ -2,6 +2,7 @@
 const callUrlApi= sessionStorage.getItem("callUrlApi");
 console.log(callUrlApi)
 const formulario= document.querySelector('#formulario');
+const body=document.querySelector('body');
 
 
 
@@ -16,10 +17,11 @@ functionsTriviaApp.getTrivia= (url)=>{
   }
 
   functionsTriviaApp.createBoxTrivia=(data,index)=>{
-    return `<fieldset class="border border-green border-5 rounded-3 shadow-lg p-3 mb-5 bg-body rounded">
-  <legend id="prueba">${index+1}.${data.question}</legend>
-        ${data.answers.map((answer) => `<div id="contenedorAnswers"><input type="radio" id="${answer}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input" required="">
-        <label for="${answer}" id="pruebaDeRespuesta">${answer}</label></div>`).join('')}
+    return `<fieldset class="d-flex flex-wrap flex-column rounded-4 shadow p-3 mb-5 bg-body">
+  <legend class="fw-bold" id="textQuestion">${index+1}. ${data.question}</legend>
+        ${data.answers.map((answer) => `<div class="d-flex justify-content-left align-items-center">
+        <input type="radio" id="${answer}${index}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input me-3" required="">
+        <label for="${answer}${index}" id="textAnswer">${answer}</label></div>`).join('')}
             </fieldset>`
   }
 
@@ -54,3 +56,96 @@ function loadTriviaItems(url) {
 }
 
 loadTriviaItems(callUrlApi)
+
+functionsTriviaApp.loadScore=(event)=>{
+
+  event.preventDefault();
+
+  let valoresInput= document.querySelectorAll('.form-check-input');
+// Crear una lista para almacenar los valores seleccionados
+let valoresSeleccionados = [];
+
+// Recorrer la lista de elementos radio
+for (let i = 0; i < valoresInput.length; i++) {
+    if (valoresInput[i].checked) {
+
+      valoresSeleccionados.push(valoresInput[i].value)
+    }
+
+}
+
+console.log(valoresSeleccionados)
+
+const informationScore={
+  score:0
+};
+
+
+for(let i=0;i < answers_correct.length;i++){
+
+  if(answers_correct[i] === valoresSeleccionados[i]){
+
+    informationScore.score+=100
+
+    console.log("hola")
+  }
+}
+
+console.log(informationScore.score)
+
+
+
+if(informationScore.score<=300){
+  informationScore.text = "Your score was bad."
+  informationScore.image = "../images/Bronze Medal.png"
+}
+
+else if(informationScore.score>=300 && informationScore.score<=500){
+    informationScore.text = "Your score was regular"
+    informationScore.image = "../images/Silver Trophy.png"
+}
+
+else if(informationScore.score>=600 && informationScore.score<=800){
+    informationScore.text = "Your score was good"
+    informationScore.image = "../images/Gold Trophy.png"
+}
+
+else if(informationScore.score>=900 && informationScore.puntuacion<=1000){
+  informationScore.text = "Your score was Excellent"
+  informationScore.image = "../images/Diamond Trophy.png"
+}
+
+const idea1= createModal(informationScore);
+
+  const convertN= document.createRange().createContextualFragment(idea1);
+      body.prepend(convertN);
+      let myModalPokemon = document.querySelector('#staticBackdrop');
+      let modalBootstrap = new bootstrap.Modal(myModalPokemon);
+      modalBootstrap.show();
+
+      myModalPokemon.addEventListener('hidden.bs.modal', () => {
+      myModalPokemon.remove();
+      window.location.href="../index.html";
+    });
+}
+
+
+formulario.addEventListener('submit',functionsTriviaApp.loadScore)
+
+function createModal(data){
+  return `<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-column align-items-center">
+        <p class="modal-title my-3 fs-2 fst-italic fw-bolder" id="staticBackdropLabel">YOU SCORE</p>
+        <img src="${data.image}" id="image-trofeo" alt="logo">
+        <p class="my-3 fs-1 fw-bold">${data.score} Points</p>
+        <p class="my-2 fs-3 fst-italic">${data.text}</p>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" id="btn-trivia" data-bs-dismiss="modal">Try Again</button>
+      </div>
+    </div>
+  </div>
+</div>`
+}

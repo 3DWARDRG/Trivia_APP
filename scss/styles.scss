@@ -1,10 +1,22 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+#bg-index{
+    background: linear-gradient(to bottom, #00f260, #0575e6
+    );
+}
+
+#box-content{
+    background: linear-gradient(to bottom,#a8ff78, #78ffd6
+);
+}
+
 main{
     font-family: "Ysabeau SC", sans-serif;
 }
 
 
 #boxTrivia{
-    box-sizing: border-box;
     padding: 5rem;
     padding-top: 1.5rem;
 }
@@ -14,44 +26,113 @@ main{
     width: 15rem;
 }
 
-#text{
-    font-weight: 500;
-    font-size: 10rem;
-    margin: 0;
+#text-title{
+    font-size: 8rem;
 }
 
-fieldset{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+#textQuestion{
+    color: #11998e;
 }
 
-#prueba{
-    display: block;
-    font-weight: 500;
-    font-size: 2rem;
-}
 
-.form-check-input{
-    margin-right: 1rem;
-}
-
-#contenedorAnswers{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-#pruebaDeRespuesta{
+#textAnswer{
     font-size: 1.5rem;
+    color: #4b134f;
 }
 
-#button{
+#button {
+    position: relative;
+    font-size: 1rem;
     margin: 2rem;
     width: 10rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6rem;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
     color: black;
+    background-color: white;
+   }
+   
+   #button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   #button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   #button::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+   }
+   
+   #button::after {
+    background-color: #fff;
+   }
+   
+   #button:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+   }
+
+#image-trofeo{
+    height: 10rem;
+    width: 10rem;
 }
 
+// Button for return to the create a new trivia with animation
 
-
-@import "../node_modules/bootstrap/scss/bootstrap.scss"
+#btn-trivia{
+    --color: black;
+    font-family: inherit;
+    display: inline-block;
+    width: 10em;
+    height: 3.5em;
+    line-height: 2.5em;
+    overflow: hidden;
+    font-size: 1rem;
+    z-index: 1;
+    color: var(--color);
+    border: 0.10em solid var(--color);
+    border-radius: 0.5em;
+    position: relative;
+  }
+  
+  #btn-trivia::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 14rem;
+    height: 12.7rem;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  #btn-trivia:hover {
+    color: white;
+  }
+  
+  #btn-trivia:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  #btn-trivia:hover::before {
+    top: -1.875rem;
+    left: -1.875rem;
+  }

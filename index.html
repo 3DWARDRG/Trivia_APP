@@ -7,46 +7,56 @@
     <script defer src="./js/index.js"></script>
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1 class="justify-content-center d-flex">Trivia App</h1>
+<body id="bg-index">
+    <header class="d-flex justify-content-between">
+        <img src="./images/logo.png" id="image" alt="logo">
+        <h1 class="d-flex fw-bold align-items-center" id="text-title">TRIVIA APP</h1>
+        <img src="./images/logo.png" id="image" alt="logo">
     </header>
-    <main>
-        <form action="#" class="form-api">
-            <h2 class="form-signin-heading">Crea tu trivia</h2>
+    <main class="px-5">
+        <form action="#" class="form-api d-flex align-items-center flex-column">
+            <h2 class="form-signin-heading fst-italic my-3 fs-4">Create your Trivia...</h2>
 
             <br>
     
-            <label for="trivia_category">Selecciona la categoria: </label>
-            <select name="trivia_category" class="form-control">
-                <option value="any">Cualquier categoria</option>
-                <option value="9">Conocimiento General</option><option value="10">Entrenenimiento: Libros</option><option value="11">Entretenimiento: Pelicula</option><option value="12">Entretenimiento: Musica</option><option value="13">Entretenimiento: Musicales &amp; Teatros</option><option value="14">Entretenimiento: Television</option><option value="15">Entretenimiento: Video Juegos</option><option value="16">Entretenimiento: Juegos de Mesa</option><option value="17">Ciencia &amp; Naturaleza</option><option value="18">Ciencia: Computadores</option><option value="19">Ciencia: Matematicas</option><option value="20">Mitologia</option><option value="21">Deportes</option><option value="22">Geografia</option><option value="23">Historia</option><option value="24">Politica</option><option value="25">Arte</option><option value="26">Celebridades</option><option value="27">Animales</option><option value="28">Vehiculos</option><option value="29">Entretenimiento: Comics</option><option value="30">Ciencia: Gadgets</option><option value="31">Entretenimiento: Anime Japones &amp; Manga</option><option value="32">Entretenimiento: Caricaturas &amp; Animaciones</option>		</select>
+            <label for="trivia_category">Select Category: </label>
+            <select name="trivia_category" class="form-control w-50">
+                <option value="any">Any Category</option>
+                <option value="9">General Knowledge</option><option value="10">Entertainment: Books</option><option value="11">Entertainment: Film</option><option value="12">Entertainment: Music</option><option value="13">Entertainment: Musicals &amp; Theatres</option><option value="14">Entertainment: Television</option><option value="15">Entertainment: Video Games</option><option value="16">Entertainment: Board Games</option><option value="17">Science &amp; Nature</option><option value="18">Science: Computers</option><option value="19">Science: Mathematics</option><option value="20">Mythology</option><option value="21">Sports</option><option value="22">Geography</option><option value="23">History</option><option value="24">Politics</option><option value="25">Art</option><option value="26">Celebrities</option><option value="27">Animals</option><option value="28">Vehicles</option><option value="29">Entertainment: Comics</option><option value="30">Science: Gadgets</option><option value="31">Entertainment: Japanese Anime &amp; Manga</option><option value="32">Entertainment: Cartoon &amp; Animations</option>		</select>
     
-            <br>
-    
-            <label for="trivia_difficulty">Selecciona Dificultad: </label>
-            <select name="trivia_difficulty" class="form-control">
-                <option value="any">Cualquier Dificultad</option>
-                <option value="easy">Facil</option>
-                <option value="medium">Intermedio</option>
-                <option value="hard">Dificil</option>
-            </select>
-    
-            <br>
-    
-            <label for="trivia_type">Selecciona el tipo de respuesta: </label>
-            <select name="trivia_type" class="form-control">
-                <option value="any">Cualquier tipo de respuesta</option>
-                <option value="multiple">Respuesta Multiple</option>
-                <option value="boolean">Verdadero / Falso</option>
-            </select>
-    
-            <br>
-    
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Generate TU TRIVIA</button>
+                <br>
+
+                <label for="trivia_difficulty">Select Difficulty: </label>
+                <select name="trivia_difficulty" class="form-control w-50">
+                    <option value="any">Any Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+        
+                <br>
+        
+                <label for="trivia_type">Select Type: </label>
+                <select name="trivia_type" class="form-control w-50">>
+                    <option value="any">Any Type</option>
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                </select>
+        
+                <br>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-lg btn-dark btn-block" type="submit">Generate your TRIVIA</button>
+                </div>
+            
         </form>
     </main>
+    <footer class="d-flex justify-content-center mt-3 fs-4 fw-bolder">
+        <p>Create for EDWARD RODRIGUEZ-Student of DEVF</p>
+    </footer>
 </body>
 </html>
