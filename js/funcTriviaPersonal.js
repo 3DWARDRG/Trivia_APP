@@ -17,10 +17,11 @@ functionsTriviaApp.getTrivia= (url)=>{
   }
 
   functionsTriviaApp.createBoxTrivia=(data,index)=>{
-    return `<fieldset class="border-0 rounded-4 shadow p-3 mb-5 bg-body rounded">
-  <legend id="prueba">${index+1}.${data.question}</legend>
-        ${data.answers.map((answer) => `<div id="contenedorAnswers"><input type="radio" id="${answer}${index}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input" required="">
-        <label for="${answer}${index}" id="pruebaDeRespuesta">${answer}</label></div>`).join('')}
+    return `<fieldset class="d-flex flex-wrap flex-column rounded-4 shadow p-3 mb-5 bg-body">
+  <legend class="fw-bold" id="textQuestion">${index+1}. ${data.question}</legend>
+        ${data.answers.map((answer) => `<div class="d-flex justify-content-left align-items-center">
+        <input type="radio" id="${answer}${index}" name="answerOfQuestion${index}" value="${answer}" class="form-check-input me-3" required="">
+        <label for="${answer}${index}" id="textAnswer">${answer}</label></div>`).join('')}
             </fieldset>`
   }
 
@@ -95,22 +96,22 @@ console.log(informationScore.score)
 
 
 if(informationScore.score<=300){
-  informationScore.text = "tu puntuacion fue MALA."
+  informationScore.text = "Your score was bad."
   informationScore.image = "../images/Bronze Medal.png"
 }
 
 else if(informationScore.score>=300 && informationScore.score<=500){
-    informationScore.text = "tu puntuacion fue REGULAR"
+    informationScore.text = "Your score was regular"
     informationScore.image = "../images/Silver Trophy.png"
 }
 
 else if(informationScore.score>=600 && informationScore.score<=800){
-    informationScore.text = "tu score fue BUENA."
+    informationScore.text = "Your score was good"
     informationScore.image = "../images/Gold Trophy.png"
 }
 
 else if(informationScore.score>=900 && informationScore.puntuacion<=1000){
-  informationScore.text = "tu score fue EXCELENTE."
+  informationScore.text = "Your score was Excellent"
   informationScore.image = "../images/Diamond Trophy.png"
 }
 
@@ -136,13 +137,13 @@ function createModal(data){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body d-flex flex-column align-items-center">
-        <h5 class="modal-title" id="staticBackdropLabel">!You Score¡</h5>
+        <p class="modal-title my-3 fs-2 fst-italic fw-bolder" id="staticBackdropLabel">YOU SCORE</p>
         <img src="${data.image}" id="image-trofeo" alt="logo">
-        <p>${data.score}</p>
-        <p>${data.text}</p>
+        <p class="my-3 fs-1 fw-bold">${data.score} Points</p>
+        <p class="my-2 fs-3 fst-italic">${data.text}</p>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">!Intentarlo de Nuevo¡</button>
+        <button type="button" id="btn-trivia" data-bs-dismiss="modal">Try Again</button>
       </div>
     </div>
   </div>
