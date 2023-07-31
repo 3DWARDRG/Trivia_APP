@@ -128,7 +128,7 @@ const idea1= createModal(informationScore);
 
       myModalPokemon.addEventListener('hidden.bs.modal', () => {
       myModalPokemon.remove();
-      window.location.href="../index.html";
+      window.location.href="../../Trivia_APP/index.html";
     });
 }
 
