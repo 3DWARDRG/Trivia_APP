@@ -11979,21 +11979,22 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-#bg-index {
-  background: linear-gradient(to bottom, #00f260, #0575e6);
-}
-
-#box-content {
-  background: linear-gradient(to bottom, #a8ff78, #78ffd6);
-}
-
-main {
+body {
   font-family: "Ysabeau SC", sans-serif;
 }
 
-#boxTrivia {
-  padding: 5rem;
-  padding-top: 1.5rem;
+#boxContentIndex {
+  background: linear-gradient(to bottom, #00f260, #0575e6);
+  min-height: 100vh;
+}
+
+.form-control {
+  width: 50%;
+}
+
+#boxContentGeneredTrivia {
+  background: linear-gradient(to bottom, #a8ff78, #78ffd6);
+  min-height: 100vh;
 }
 
 #image {
@@ -12001,7 +12002,15 @@ main {
   width: 15rem;
 }
 
+#boxElementsTrivia {
+  padding: 1.5rem 5rem;
+}
+
 #text-title {
+  font-size: 8rem;
+}
+
+#text-title2 {
   font-size: 8rem;
 }
 
@@ -12107,4 +12116,34 @@ main {
 #btn-trivia:hover::before {
   top: -1.875rem;
   left: -1.875rem;
+}
+
+@media (max-width: 575.98px) {
+  .form-control {
+    width: 90%;
+  }
+  #boxElementsTrivia {
+    padding: 0.8rem 2.5rem;
+  }
+  #image {
+    margin-top: 1rem;
+    height: 7rem;
+    width: 5.5rem;
+  }
+  #text-title {
+    font-size: 2rem;
+  }
+  #text-title2 {
+    font-size: 3.5rem;
+  }
+  #textQuestion {
+    font-size: 0.8rem;
+  }
+  #textAnswer {
+    font-size: 0.6rem;
+    color: #4b134f;
+  }
+  #text-important {
+    font-size: 0.8rem;
+  }
 }/*# sourceMappingURL=styles.css.map */

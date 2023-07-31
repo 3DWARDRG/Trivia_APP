@@ -1,24 +1,24 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 
-#bg-index{
-    background: linear-gradient(to bottom, #00f260, #0575e6
-    );
-}
 
-#box-content{
-    background: linear-gradient(to bottom,#a8ff78, #78ffd6
-);
-}
-
-main{
+body{
     font-family: "Ysabeau SC", sans-serif;
+    
 }
 
+#boxContentIndex{
+    background: linear-gradient(to bottom, #00f260, #0575e6);
+    min-height: 100vh;
+}
 
-#boxTrivia{
-    padding: 5rem;
-    padding-top: 1.5rem;
+.form-control{
+    width: 50%;
+}
+
+#boxContentGeneredTrivia{
+    background: linear-gradient(to bottom,#a8ff78, #78ffd6);
+    min-height: 100vh;
 }
 
 #image{
@@ -26,7 +26,15 @@ main{
     width: 15rem;
 }
 
+#boxElementsTrivia{
+    padding: 1.5rem 5rem;
+}
+
 #text-title{
+    font-size: 8rem;
+}
+
+#text-title2{
     font-size: 8rem;
 }
 
@@ -39,6 +47,8 @@ main{
     font-size: 1.5rem;
     color: #4b134f;
 }
+
+// Button for finalize and see the score in screen
 
 #button {
     position: relative;
@@ -56,19 +66,19 @@ main{
     font-weight: 500;
     color: black;
     background-color: white;
-   }
-   
-   #button:hover {
+}
+
+#button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-   }
-   
-   #button:active {
+}
+
+#button:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-   }
-   
-   #button::after {
+}
+
+#button::after {
     content: "";
     display: inline-block;
     height: 100%;
@@ -78,23 +88,23 @@ main{
     left: 0;
     z-index: -1;
     transition: all .4s;
-   }
-   
-   #button::after {
+}
+
+#button::after {
     background-color: #fff;
-   }
-   
-   #button:hover::after {
+}
+
+#button:hover::after {
     transform: scaleX(1.4) scaleY(1.6);
     opacity: 0;
-   }
+}
 
 #image-trofeo{
     height: 10rem;
     width: 10rem;
 }
 
-// Button for return to the create a new trivia with animation
+// Button of the Modal for return to the create a new trivia with animation
 
 #btn-trivia{
     --color: black;
@@ -110,9 +120,9 @@ main{
     border: 0.10em solid var(--color);
     border-radius: 0.5em;
     position: relative;
-  }
-  
-  #btn-trivia::before {
+}
+
+#btn-trivia::before {
     position: absolute;
     content: "";
     background: var(--color);
@@ -120,19 +130,60 @@ main{
     height: 12.7rem;
     z-index: -1;
     border-radius: 50%;
-  }
-  
-  #btn-trivia:hover {
+}
+
+#btn-trivia:hover {
     color: white;
-  }
-  
-  #btn-trivia:before {
+}
+
+#btn-trivia:before {
     top: 100%;
     left: 100%;
     transition: .3s all;
-  }
-  
-  #btn-trivia:hover::before {
+}
+
+#btn-trivia:hover::before {
     top: -1.875rem;
     left: -1.875rem;
-  }
+}
+
+@include media-breakpoint-down(sm) { 
+
+
+
+    .form-control{
+        width: 90%;
+    }
+
+    #boxElementsTrivia{
+        padding: 0.8rem 2.5rem;
+    }
+
+    #image{
+        margin-top: 1rem;
+        height: 7rem;
+        width: 5.5rem;
+    }
+
+    #text-title{
+        font-size: 2rem;
+    }
+    
+    #text-title2{
+        font-size: 3.5rem;
+    }
+
+    #textQuestion{
+    font-size: 0.8rem;
+    }
+    
+    #textAnswer{
+        font-size: 0.6rem;
+        color: #4b134f;
+    }
+
+    #text-important{
+        font-size: 0.8rem;
+    }
+}
+
