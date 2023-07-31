@@ -100,22 +100,22 @@ console.log(informationScore.score)
 
 if(informationScore.score<=300){
   informationScore.text = "Your score was bad."
-  informationScore.image = "../images/Bronze Medal.png"
+  informationScore.image = "../../Trivia_APP/images/Bronze Medal.png"
 }
 
 else if(informationScore.score>=300 && informationScore.score<=500){
     informationScore.text = "Your score was regular"
-    informationScore.image = "../images/Silver Trophy.png"
+    informationScore.image = "../../Trivia_APP/images/Silver Trophy.png"
 }
 
 else if(informationScore.score>=600 && informationScore.score<=800){
     informationScore.text = "Your score was good"
-    informationScore.image = "../images/Gold Trophy.png"
+    informationScore.image = "../../Trivia_APP/images/Gold Trophy.png"
 }
 
 else if(informationScore.score>=900 && informationScore.puntuacion<=1000){
   informationScore.text = "Your score was Excellent"
-  informationScore.image = "../images/Diamond Trophy.png"
+  informationScore.image = "../../Trivia_APP/images/Diamond Trophy.png"
 }
 
 const idea1= createModal(informationScore);
@@ -128,7 +128,7 @@ const idea1= createModal(informationScore);
 
       myModalPokemon.addEventListener('hidden.bs.modal', () => {
       myModalPokemon.remove();
-      window.location.href="../index.html";
+      window.location.href="../../Trivia_APP/index.html";
     });
 }
 
